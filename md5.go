@@ -1,7 +1,9 @@
 package cryptogo
 
 import (
+	"crypto/hmac"
 	"crypto/md5"
+	"encoding/hex"
 	"fmt"
 	"strings"
 )
@@ -34,4 +36,11 @@ func MD5SixteenToUpper(clearText string) string {
 // MD5SixteenToLower Returns a 16-digit uppercase MD5 encrypted string
 func MD5SixteenToLower(clearText string) string {
 	return MD5Sixteen(clearText)
+}
+
+// HmacMD5 Keyed-hash message authentication codes (HMAC) is a mechanism for message authentication using cryptographic hash functions.
+func HmacMD5(key, clearText string) string {
+	h := hmac.New(md5.New, []byte(key))
+	h.Write([]byte(clearText))
+	return hex.EncodeToString(h.Sum(nil))
 }

@@ -28,3 +28,7 @@ func TestMD5SixteenToUpper(t *testing.T) {
 func TestMD5SixteenToLower(t *testing.T) {
 	assert.Equal(t, "ac59075b964b0715", MD5SixteenToLower("123"))
 }
+
+func TestHmacMD5(t *testing.T) {
+	assert.Equal(t, "c8ec4ed8338e4d0a81e75ba3b9d290a8", HmacMD5("", "123"))
+}
