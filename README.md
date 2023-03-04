@@ -26,12 +26,16 @@ func main()  {
 
 ## Finished encrypt functions
 
-* md5
-* sha1
-* sha224
-* sha256
-* sha384
-* sha512
+- md5
+- sha1
+- sha224
+- sha256
+- sha384
+- sha512
+
+---
+
+- hmac-md5
 
 ## Staying up to date
 
