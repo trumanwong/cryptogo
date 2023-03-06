@@ -36,6 +36,7 @@ func main()  {
 - sha3-256
 - sha3-384
 - sha3-512
+
 ---
 
 - hmac-md5
@@ -45,6 +46,10 @@ func main()  {
 - hmac-sha512
 - hmac-sha384
 - hmac-ripemd160
+- hmac-sha3-224
+- hmac-sha3-256
+- hmac-sha3-384
+- hmac-sha3-512
 
 ## Staying up to date
 
