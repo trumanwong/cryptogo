@@ -51,6 +51,14 @@ func main()  {
 - hmac-sha3-384
 - hmac-sha3-512
 
+---
+
+- rc4
+
+---
+
+- hex
+
 ## Staying up to date
 
 To update crypto-go to the latest version, use `go get -u github.com/trumanwong/cryptogo`
