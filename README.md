@@ -57,7 +57,12 @@ func main()  {
 
 ---
 
+- bcrypt
+
+---
+
 - hex
+- base64
 
 ## Staying up to date
 
