@@ -1,4 +1,4 @@
-module cryptogo
+module github.com/trumanwong/cryptogo
 
 go 1.20
 
