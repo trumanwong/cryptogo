@@ -1,0 +1,39 @@
+package aes
+
+import (
+	"crypto/aes"
+	"crypto/cipher"
+	"errors"
+)
+
+// CTREncrypt AES CTR encryption with secret key, iv and padding
+func CTREncrypt(clearText, key, iv []byte, padding cipherPadding) ([]byte, error) {
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		return nil, err
+	}
+
+	clearText, err = paddingClearText(clearText, padding, block.BlockSize())
+	if err != nil {
+		return nil, err
+	}
+	encrypt := make([]byte, len(clearText))
+	cipher.NewCTR(block, iv).XORKeyStream(encrypt, clearText)
+	return encrypt, nil
+}
+
+// CTRDecrypt AES CTR decryption with secret key, iv and padding
+func CTRDecrypt(src, key, iv []byte, padding cipherPadding) ([]byte, error) {
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		return nil, err
+	}
+
+	if len(iv) != block.BlockSize() {
+		return nil, errors.New("AesCTRDecrypt: IV length must equal block size")
+	}
+
+	decrypt := make([]byte, len(src))
+	cipher.NewCTR(block, iv).XORKeyStream(decrypt, src)
+	return unPadding(decrypt, padding), nil
+}
