@@ -1,4 +1,4 @@
-package aes
+package mode
 
 // block cipher mode of operation
 type blockMode string

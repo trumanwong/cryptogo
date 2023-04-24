@@ -1,8 +1,8 @@
-package aes
+package mode
 
 import (
-	"crypto/aes"
 	"crypto/cipher"
+	"github.com/trumanwong/cryptogo/paddings"
 )
 
 type ecb struct {
@@ -65,14 +65,9 @@ func (x *ecbDecrypter) CryptBlocks(dst, src []byte) {
 	}
 }
 
-// ECBEncrypt AES ECB encryption with secret key and padding
-func ECBEncrypt(clearText []byte, key []byte, padding cipherPadding) ([]byte, error) {
-	block, err := aes.NewCipher(key)
-	if err != nil {
-		return nil, err
-	}
-
-	clearText, err = paddingClearText(clearText, padding, block.BlockSize())
+// ECBEncrypt ECB encryption with block and padding
+func ECBEncrypt(clearText []byte, block cipher.Block, padding paddings.CipherPadding) ([]byte, error) {
+	clearText, err := paddings.PaddingClearText(clearText, padding, block.BlockSize())
 	if err != nil {
 		return nil, err
 	}
@@ -81,14 +76,9 @@ func ECBEncrypt(clearText []byte, key []byte, padding cipherPadding) ([]byte, er
 	return encrypt, nil
 }
 
-// ECBDecrypt AES ECB encryption with secret key and padding
-func ECBDecrypt(src []byte, key []byte, padding cipherPadding) ([]byte, error) {
-	block, err := aes.NewCipher(key)
-	if err != nil {
-		return nil, err
-	}
-
+// ECBDecrypt ECB encryption with block and padding
+func ECBDecrypt(src []byte, block cipher.Block, padding paddings.CipherPadding) ([]byte, error) {
 	decrypt := make([]byte, len(src))
 	NewECBDecrypter(block).CryptBlocks(decrypt, src)
-	return unPadding(decrypt, padding), nil
+	return paddings.UnPadding(decrypt, padding), nil
 }

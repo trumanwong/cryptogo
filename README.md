@@ -73,6 +73,24 @@ AES Encryption/Decryption with secret key, iv and padding(`ZERO` / `ANSI X.923`/
 - aes-ecb
 - aes-ofb
 
+---
+
+DES Encryption/Decryption with secret key, iv and padding(`ZERO` / `ANSI X.923`/ `ISO/IEC 9797-1` / `ISO 10126` / `PKCS5` / `PKCS7`).
+- aes-cbc
+- aes-cfb
+- aes-ctr
+- aes-ecb
+- aes-ofb
+
+---
+
+3DES Encryption/Decryption with secret key, iv and padding(`ZERO` / `ANSI X.923`/ `ISO/IEC 9797-1` / `ISO 10126` / `PKCS5` / `PKCS7`).
+- aes-cbc
+- aes-cfb
+- aes-ctr
+- aes-ecb
+- aes-ofb
+
 ## Staying up to date
 
 To update crypto-go to the latest version, use `go get -u github.com/trumanwong/cryptogo`
