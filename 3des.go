@@ -7,6 +7,7 @@ import (
 	"log"
 )
 
+// TripleDesCBCEncrypt encrypts by 3des with cbc mode.
 func TripleDesCBCEncrypt(clearText, key, iv []byte, padding paddings.CipherPadding) ([]byte, error) {
 	block, err := des.NewTripleDESCipher(key)
 	log.Println(err)
@@ -16,6 +17,7 @@ func TripleDesCBCEncrypt(clearText, key, iv []byte, padding paddings.CipherPaddi
 	return mode.CBCEncrypt(clearText, iv, block, padding)
 }
 
+// TripleDesCBCDecrypt decrypts by 3des with cbc mode.
 func TripleDesCBCDecrypt(src, key, iv []byte, padding paddings.CipherPadding) ([]byte, error) {
 	block, err := des.NewTripleDESCipher(key)
 	if err != nil {
@@ -24,6 +26,7 @@ func TripleDesCBCDecrypt(src, key, iv []byte, padding paddings.CipherPadding) ([
 	return mode.CBCDecrypt(src, iv, block, padding)
 }
 
+// TripleDesCFBEncrypt encrypts by 3des with cfb mode.
 func TripleDesCFBEncrypt(clearText, key, iv []byte, padding paddings.CipherPadding) ([]byte, error) {
 	block, err := des.NewTripleDESCipher(key)
 	if err != nil {
@@ -32,6 +35,7 @@ func TripleDesCFBEncrypt(clearText, key, iv []byte, padding paddings.CipherPaddi
 	return mode.CFBEncrypt(clearText, iv, block, padding)
 }
 
+// TripleDesCFBDecrypt decrypts by 3des with cfb mode.
 func TripleDesCFBDecrypt(src, key, iv []byte, padding paddings.CipherPadding) ([]byte, error) {
 	block, err := des.NewTripleDESCipher(key)
 	if err != nil {
@@ -40,6 +44,7 @@ func TripleDesCFBDecrypt(src, key, iv []byte, padding paddings.CipherPadding) ([
 	return mode.CFBDecrypt(src, iv, block, padding)
 }
 
+// TripleDesCTREncrypt encrypts by 3des with ctr mode.
 func TripleDesCTREncrypt(clearText, key, iv []byte, padding paddings.CipherPadding) ([]byte, error) {
 	block, err := des.NewTripleDESCipher(key)
 	if err != nil {
@@ -48,6 +53,7 @@ func TripleDesCTREncrypt(clearText, key, iv []byte, padding paddings.CipherPaddi
 	return mode.CTREncrypt(clearText, iv, block, padding)
 }
 
+// TripleDesCTRDecrypt decrypts by 3des with ctr mode.
 func TripleDesCTRDecrypt(src, key, iv []byte, padding paddings.CipherPadding) ([]byte, error) {
 	block, err := des.NewTripleDESCipher(key)
 	if err != nil {
@@ -56,6 +62,7 @@ func TripleDesCTRDecrypt(src, key, iv []byte, padding paddings.CipherPadding) ([
 	return mode.CTRDecrypt(src, iv, block, padding)
 }
 
+// TripleDesECBEncrypt encrypts by 3des with ecb mode.
 func TripleDesECBEncrypt(clearText, key []byte, padding paddings.CipherPadding) ([]byte, error) {
 	block, err := des.NewTripleDESCipher(key)
 	if err != nil {
@@ -64,6 +71,7 @@ func TripleDesECBEncrypt(clearText, key []byte, padding paddings.CipherPadding) 
 	return mode.ECBEncrypt(clearText, block, padding)
 }
 
+// TripleDesECBDecrypt decrypts by 3des with ecb mode.
 func TripleDesECBDecrypt(src, key []byte, padding paddings.CipherPadding) ([]byte, error) {
 	block, err := des.NewTripleDESCipher(key)
 	if err != nil {
@@ -72,6 +80,7 @@ func TripleDesECBDecrypt(src, key []byte, padding paddings.CipherPadding) ([]byt
 	return mode.ECBDecrypt(src, block, padding)
 }
 
+// TripleDesOFBEncrypt encrypts by 3des with ofb mode.
 func TripleDesOFBEncrypt(clearText, key, iv []byte, padding paddings.CipherPadding) ([]byte, error) {
 	block, err := des.NewTripleDESCipher(key)
 	if err != nil {
@@ -80,6 +89,7 @@ func TripleDesOFBEncrypt(clearText, key, iv []byte, padding paddings.CipherPaddi
 	return mode.OFBEncrypt(clearText, iv, block, padding)
 }
 
+// TripleDesOFBDecrypt decrypts by 3des with ofb mode.
 func TripleDesOFBDecrypt(src, key, iv []byte, padding paddings.CipherPadding) ([]byte, error) {
 	block, err := des.NewTripleDESCipher(key)
 	if err != nil {

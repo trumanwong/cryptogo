@@ -72,24 +72,43 @@ AES Encryption/Decryption with secret key, iv and padding(`ZERO` / `ANSI X.923`/
 - aes-ctr
 - aes-ecb
 - aes-ofb
+- aes-gcm
 
 ---
 
 DES Encryption/Decryption with secret key, iv and padding(`ZERO` / `ANSI X.923`/ `ISO/IEC 9797-1` / `ISO 10126` / `PKCS5` / `PKCS7`).
-- aes-cbc
-- aes-cfb
-- aes-ctr
-- aes-ecb
-- aes-ofb
+- des-cbc
+- des-cfb
+- des-ctr
+- des-ecb
+- des-ofb
 
 ---
 
 3DES Encryption/Decryption with secret key, iv and padding(`ZERO` / `ANSI X.923`/ `ISO/IEC 9797-1` / `ISO 10126` / `PKCS5` / `PKCS7`).
-- aes-cbc
-- aes-cfb
-- aes-ctr
-- aes-ecb
-- aes-ofb
+- 3des-cbc
+- 3des-cfb
+- 3des-ctr
+- 3des-ecb
+- 3des-ofb
+
+---
+
+Twofish Encryption/Decryption with secret key, iv and padding(`ZERO` / `ANSI X.923`/ `ISO/IEC 9797-1` / `ISO 10126` / `PKCS5` / `PKCS7`).
+- Twofish-cbc
+- Twofish-cfb
+- Twofish-ctr
+- Twofish-ecb
+- Twofish-ofb
+
+---
+
+Blowfish Encryption/Decryption with secret key, iv and padding(`ZERO` / `ANSI X.923`/ `ISO/IEC 9797-1` / `ISO 10126` / `PKCS5` / `PKCS7`).
+- Blowfish-cbc
+- Blowfish-cfb
+- Blowfish-ctr
+- Blowfish-ecb
+- Blowfish-ofb
 
 ## Staying up to date
 

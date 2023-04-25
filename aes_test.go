@@ -651,3 +651,32 @@ func TestAesOFBISO10126(t *testing.T) {
 		})
 	}
 }
+
+func TestAesGCMEncrypt(t *testing.T) {
+	clearText := []byte("TrumanWong")
+	aes128Key := []byte("1234567812345678")
+	aes192Key := []byte("123456781234567812345678")
+	aes256Key := []byte("12345678123456781234567812345678")
+	tests := []struct {
+		ClearText []byte
+		Key       []byte
+	}{
+		// AES-128-GCM
+		{clearText, aes128Key},
+		// AES-192-GCM
+		{clearText, aes192Key},
+		// AES-256-GCM
+		{clearText, aes256Key},
+	}
+
+	for _, v := range tests {
+		t.Run(fmt.Sprintf("AES-GCM"), func(t *testing.T) {
+			password, nonce, err := AesGCMEncrypt(v.ClearText, v.Key)
+			assert.NoError(t, err)
+
+			ret, err := AesGCMDecrypt(password, v.Key, nonce)
+			assert.NoError(t, err)
+			assert.Equal(t, string(clearText), string(ret))
+		})
+	}
+}

@@ -32,7 +32,7 @@ func TestTripleDesCBCEncrypt(t *testing.T) {
 	}
 
 	for _, v := range tests {
-		t.Run(fmt.Sprintf("Triple-Triple-Des-CBC-%s", v.Mode), func(t *testing.T) {
+		t.Run(fmt.Sprintf("Triple-Des-CBC-%s", v.Mode), func(t *testing.T) {
 			password, err := TripleDesCBCEncrypt(v.ClearText, v.Key, v.IV, v.Mode)
 			assert.NoError(t, err)
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
@@ -62,7 +62,7 @@ func TestTripleDesCBCDecrypt(t *testing.T) {
 	}
 
 	for _, v := range tests {
-		t.Run(fmt.Sprintf("Triple-Triple-Des-CBC-%s", v.Mode), func(t *testing.T) {
+		t.Run(fmt.Sprintf("Triple-Des-CBC-%s", v.Mode), func(t *testing.T) {
 			src, err := base64.StdEncoding.DecodeString(v.Encrypt)
 			assert.NoError(t, err)
 			password, err := TripleDesCBCDecrypt(src, v.Key, v.IV, v.Mode)
@@ -87,7 +87,7 @@ func TestTripleDesCBCISO10126(t *testing.T) {
 	}
 
 	for _, v := range tests {
-		t.Run(fmt.Sprintf("Triple-Triple-Des-CBC-%s", v.Mode), func(t *testing.T) {
+		t.Run(fmt.Sprintf("Triple-Des-CBC-%s", v.Mode), func(t *testing.T) {
 			password, err := TripleDesCBCEncrypt(v.ClearText, v.Key, v.IV, v.Mode)
 			assert.NoError(t, err)
 
@@ -120,7 +120,7 @@ func TestTripleDesCFBEncrypt(t *testing.T) {
 	}
 
 	for _, v := range tests {
-		t.Run(fmt.Sprintf("Triple-Triple-Des-CFB-%s", v.Mode), func(t *testing.T) {
+		t.Run(fmt.Sprintf("Triple-Des-CFB-%s", v.Mode), func(t *testing.T) {
 			password, err := TripleDesCFBEncrypt(v.ClearText, v.Key, v.IV, v.Mode)
 			assert.NoError(t, err)
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
@@ -150,7 +150,7 @@ func TestTripleDesCFBDecrypt(t *testing.T) {
 	}
 
 	for _, v := range tests {
-		t.Run(fmt.Sprintf("Triple-Triple-Des-CFB-%s", v.Mode), func(t *testing.T) {
+		t.Run(fmt.Sprintf("Triple-Des-CFB-%s", v.Mode), func(t *testing.T) {
 			src, err := base64.StdEncoding.DecodeString(v.Encrypt)
 			assert.NoError(t, err)
 			password, err := TripleDesCFBDecrypt(src, v.Key, v.IV, v.Mode)
@@ -175,7 +175,7 @@ func TestTripleDesCFBISO10126(t *testing.T) {
 	}
 
 	for _, v := range tests {
-		t.Run(fmt.Sprintf("Triple-Triple-Des-CFB-%s", v.Mode), func(t *testing.T) {
+		t.Run(fmt.Sprintf("Triple-Des-CFB-%s", v.Mode), func(t *testing.T) {
 			password, err := TripleDesCFBEncrypt(v.ClearText, v.Key, v.IV, v.Mode)
 			assert.NoError(t, err)
 
@@ -208,7 +208,7 @@ func TestTripleDesCTREncrypt(t *testing.T) {
 	}
 
 	for _, v := range tests {
-		t.Run(fmt.Sprintf("Triple-Triple-Des-CTR-%s", v.Mode), func(t *testing.T) {
+		t.Run(fmt.Sprintf("Triple-Des-CTR-%s", v.Mode), func(t *testing.T) {
 			password, err := TripleDesCTREncrypt(v.ClearText, v.Key, v.IV, v.Mode)
 			assert.NoError(t, err)
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
@@ -238,7 +238,7 @@ func TestTripleDesCTRDecrypt(t *testing.T) {
 	}
 
 	for _, v := range tests {
-		t.Run(fmt.Sprintf("Triple-Triple-Des-CTR-%s", v.Mode), func(t *testing.T) {
+		t.Run(fmt.Sprintf("Triple-Des-CTR-%s", v.Mode), func(t *testing.T) {
 			src, err := base64.StdEncoding.DecodeString(v.Encrypt)
 			assert.NoError(t, err)
 			password, err := TripleDesCTRDecrypt(src, v.Key, v.IV, v.Mode)
@@ -263,7 +263,7 @@ func TestTripleDesCTRISO10126(t *testing.T) {
 	}
 
 	for _, v := range tests {
-		t.Run(fmt.Sprintf("Triple-Triple-Des-CTR-%s", v.Mode), func(t *testing.T) {
+		t.Run(fmt.Sprintf("Triple-Des-CTR-%s", v.Mode), func(t *testing.T) {
 			password, err := TripleDesCTREncrypt(v.ClearText, v.Key, v.IV, v.Mode)
 			assert.NoError(t, err)
 
@@ -294,7 +294,7 @@ func TestTripleDesECBEncrypt(t *testing.T) {
 	}
 
 	for _, v := range tests {
-		t.Run(fmt.Sprintf("Triple-Triple-Des-ECB-%s", v.Mode), func(t *testing.T) {
+		t.Run(fmt.Sprintf("Triple-Des-ECB-%s", v.Mode), func(t *testing.T) {
 			password, err := TripleDesECBEncrypt(v.ClearText, v.Key, v.Mode)
 			assert.NoError(t, err)
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
@@ -322,7 +322,7 @@ func TestTripleDesECBDecrypt(t *testing.T) {
 	}
 
 	for _, v := range tests {
-		t.Run(fmt.Sprintf("Triple-Triple-Des-ECB-%s", v.Mode), func(t *testing.T) {
+		t.Run(fmt.Sprintf("Triple-Des-ECB-%s", v.Mode), func(t *testing.T) {
 			src, err := base64.StdEncoding.DecodeString(v.Encrypt)
 			assert.NoError(t, err)
 			password, err := TripleDesECBDecrypt(src, v.Key, v.Mode)
@@ -345,7 +345,7 @@ func TestTripleDesECBISO10126(t *testing.T) {
 	}
 
 	for _, v := range tests {
-		t.Run(fmt.Sprintf("Triple-Triple-Des-ECB-%s", v.Mode), func(t *testing.T) {
+		t.Run(fmt.Sprintf("Triple-Des-ECB-%s", v.Mode), func(t *testing.T) {
 			password, err := TripleDesECBEncrypt(v.ClearText, v.Key, v.Mode)
 			assert.NoError(t, err)
 
@@ -378,7 +378,7 @@ func TestTripleDesOFBEncrypt(t *testing.T) {
 	}
 
 	for _, v := range tests {
-		t.Run(fmt.Sprintf("Triple-Triple-Des-OFB-%s", v.Mode), func(t *testing.T) {
+		t.Run(fmt.Sprintf("Triple-Des-OFB-%s", v.Mode), func(t *testing.T) {
 			password, err := TripleDesOFBEncrypt(v.ClearText, v.Key, v.IV, v.Mode)
 			assert.NoError(t, err)
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
@@ -408,7 +408,7 @@ func TestTripleDesOFBDecrypt(t *testing.T) {
 	}
 
 	for _, v := range tests {
-		t.Run(fmt.Sprintf("Triple-Triple-Des-OFB-%s", v.Mode), func(t *testing.T) {
+		t.Run(fmt.Sprintf("Triple-Des-OFB-%s", v.Mode), func(t *testing.T) {
 			src, err := base64.StdEncoding.DecodeString(v.Encrypt)
 			assert.NoError(t, err)
 			password, err := TripleDesOFBDecrypt(src, v.Key, v.IV, v.Mode)
@@ -433,7 +433,7 @@ func TestTripleDesOFBISO10126(t *testing.T) {
 	}
 
 	for _, v := range tests {
-		t.Run(fmt.Sprintf("Triple-Triple-Des-OFB-%s", v.Mode), func(t *testing.T) {
+		t.Run(fmt.Sprintf("Triple-Des-OFB-%s", v.Mode), func(t *testing.T) {
 			password, err := TripleDesOFBEncrypt(v.ClearText, v.Key, v.IV, v.Mode)
 			assert.NoError(t, err)
 

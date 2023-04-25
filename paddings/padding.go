@@ -7,6 +7,7 @@ import (
 type CipherPadding string
 
 const (
+	No       CipherPadding = "No"
 	Zero     CipherPadding = "ZERO"
 	AnsiX923 CipherPadding = "ANSI X.923"
 	ISO97971 CipherPadding = "ISO/IEC 9797-1"
@@ -15,6 +16,7 @@ const (
 	PKCS7    CipherPadding = "PKCS7"
 )
 
+// PaddingClearText padding clearText with padding mode.
 func PaddingClearText(clearText []byte, padding CipherPadding, blockSize int) ([]byte, error) {
 	if blockSize < 1 || blockSize > 256 {
 		return nil, fmt.Errorf("padding.%s ClearText blockSize is out of bounds: %d", padding, blockSize)
@@ -36,6 +38,7 @@ func PaddingClearText(clearText []byte, padding CipherPadding, blockSize int) ([
 	return clearText, nil
 }
 
+// UnPadding unpadding src with padding mode.
 func UnPadding(src []byte, padding CipherPadding) []byte {
 	switch padding {
 	case Zero:

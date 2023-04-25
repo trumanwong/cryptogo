@@ -9,4 +9,5 @@ const (
 	CFB blockMode = "cfb"
 	OFB blockMode = "ofb"
 	CTR blockMode = "ctr"
+	GCM blockMode = "gcm"
 )

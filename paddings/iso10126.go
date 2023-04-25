@@ -2,7 +2,7 @@ package paddings
 
 import "crypto/rand"
 
-// implements ISO 10126 byte padding. This has been withdrawn in 2007.
+// ISO/IEC 10126 Padding Method
 func iso10126Padding(src []byte, blockSize int) ([]byte, error) {
 	padding := blockSize - len(src)%blockSize
 	r := make([]byte, padding-1)
@@ -14,6 +14,7 @@ func iso10126Padding(src []byte, blockSize int) ([]byte, error) {
 	return append(src, padText...), nil
 }
 
+// ISO/IEC 10126 unpadding is identical to PKCS#7 unpadding.
 func iso10126UnPadding(src []byte) []byte {
 	return pkcs7UnPadding(src)
 }
