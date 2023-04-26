@@ -4,13 +4,11 @@ import (
 	"crypto/des"
 	"github.com/trumanwong/cryptogo/mode"
 	"github.com/trumanwong/cryptogo/paddings"
-	"log"
 )
 
 // TripleDesCBCEncrypt encrypts by 3des with cbc mode.
 func TripleDesCBCEncrypt(clearText, key, iv []byte, padding paddings.CipherPadding) ([]byte, error) {
 	block, err := des.NewTripleDESCipher(key)
-	log.Println(err)
 	if err != nil {
 		return nil, err
 	}

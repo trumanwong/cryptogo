@@ -8,6 +8,16 @@ import (
 	"testing"
 )
 
+func ExampleTripleDesCBCEncrypt() {
+	cipherText, err := TripleDesCBCEncrypt([]byte("TrumanWong"), []byte("123456781234567812345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(cipherText))
+	// Output: DQ3gRwc3eKO/ffcphCq45g==
+}
+
 func TestTripleDesCBCEncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	key := []byte("123456781234567812345678")
@@ -38,6 +48,26 @@ func TestTripleDesCBCEncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleTripleDesCBCDecrypt() {
+	src, err := base64.StdEncoding.DecodeString("DQ3gRwc3eKO/ffcphCq45g==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	iv := []byte("12345678")
+
+	// Triple-Des-CBC Zero padding
+	key := []byte("123456781234567812345678")
+	dst, err := TripleDesCBCDecrypt(src, key, iv, paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(dst))
+	// Output: TrumanWong
 }
 
 func TestTripleDesCBCDecrypt(t *testing.T) {
@@ -98,6 +128,16 @@ func TestTripleDesCBCISO10126(t *testing.T) {
 	}
 }
 
+func ExampleTripleDesCFBEncrypt() {
+	cipherText, err := TripleDesCFBEncrypt([]byte("TrumanWong"), []byte("123456781234567812345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(cipherText))
+	// Output: wqJ35Rm72+aM4xRnW2SKzw==
+}
+
 func TestTripleDesCFBEncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	key := []byte("123456781234567812345678")
@@ -126,6 +166,21 @@ func TestTripleDesCFBEncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleTripleDesCFBDecrypt() {
+	src, err := base64.StdEncoding.DecodeString("wqJ35Rm72+aM4xRnW2SKzw==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	password, err := TripleDesCFBDecrypt(src, []byte("123456781234567812345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(password))
+	// Output: TrumanWong
 }
 
 func TestTripleDesCFBDecrypt(t *testing.T) {
@@ -186,6 +241,16 @@ func TestTripleDesCFBISO10126(t *testing.T) {
 	}
 }
 
+func ExampleTripleDesCTREncrypt() {
+	cipherText, err := TripleDesCTREncrypt([]byte("TrumanWong"), []byte("123456781234567812345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(cipherText))
+	// Output: wqJ35Rm72+Yvde8W2Xn2CA==
+}
+
 func TestTripleDesCTREncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	key := []byte("123456781234567812345678")
@@ -214,6 +279,21 @@ func TestTripleDesCTREncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleTripleDesCTRDecrypt() {
+	cipherText, err := base64.StdEncoding.DecodeString("wqJ35Rm72+Yvde8W2Xn2CA==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	password, err := TripleDesCTRDecrypt(cipherText, []byte("123456781234567812345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(password))
+	// Output: TrumanWong
 }
 
 func TestTripleDesCTRDecrypt(t *testing.T) {
@@ -274,6 +354,16 @@ func TestTripleDesCTRISO10126(t *testing.T) {
 	}
 }
 
+func ExampleTripleDesECBEncrypt() {
+	password, err := TripleDesECBEncrypt([]byte("TrumanWong"), []byte("123456781234567812345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(password))
+	// Output: rayjMG0QXSYRXd2HJ0J4rg==
+}
+
 func TestTripleDesECBEncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	key := []byte("123456781234567812345678")
@@ -300,6 +390,21 @@ func TestTripleDesECBEncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleTripleDesECBDecrypt() {
+	cipherText, err := base64.StdEncoding.DecodeString("rayjMG0QXSYRXd2HJ0J4rg==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	password, err := TripleDesECBDecrypt(cipherText, []byte("123456781234567812345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(password))
+	// Output: TrumanWong
 }
 
 func TestTripleDesECBDecrypt(t *testing.T) {
@@ -356,6 +461,16 @@ func TestTripleDesECBISO10126(t *testing.T) {
 	}
 }
 
+func ExampleTripleDesOFBEncrypt() {
+	cipherText, err := TripleDesOFBEncrypt([]byte("TrumanWong"), []byte("123456781234567812345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(cipherText))
+	// Output: wqJ35Rm72+aHEpjfKW8Sqg==
+}
+
 func TestTripleDesOFBEncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	key := []byte("123456781234567812345678")
@@ -384,6 +499,21 @@ func TestTripleDesOFBEncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleTripleDesOFBDecrypt() {
+	src, err := base64.StdEncoding.DecodeString("wqJ35Rm72+aHEpjfKW8Sqg==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	password, err := TripleDesOFBDecrypt(src, []byte("123456781234567812345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(password))
+	// Output: TrumanWong
 }
 
 func TestTripleDesOFBDecrypt(t *testing.T) {

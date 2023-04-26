@@ -8,6 +8,16 @@ import (
 	"testing"
 )
 
+func ExampleBlowfishCBCEncrypt() {
+	encrypt, err := BlowfishCBCEncrypt([]byte("TrumanWong"), []byte("123456781234567812345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(encrypt))
+	// Output: 9EOZcxBiUN1RF9MIP4DFyA==
+}
+
 func TestBlowfishCBCEncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	key := []byte("123456781234567812345678")
@@ -38,6 +48,21 @@ func TestBlowfishCBCEncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleBlowfishCBCDecrypt() {
+	encrypt, err := base64.StdEncoding.DecodeString("9EOZcxBiUN1RF9MIP4DFyA==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	decrypt, err := BlowfishCBCDecrypt(encrypt, []byte("123456781234567812345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(decrypt))
+	// Output: TrumanWong
 }
 
 func TestBlowfishCBCDecrypt(t *testing.T) {
@@ -98,6 +123,16 @@ func TestBlowfishCBCISO10126(t *testing.T) {
 	}
 }
 
+func ExampleBlowfishCFBEncrypt() {
+	encrypt, err := BlowfishCFBEncrypt([]byte("TrumanWong"), []byte("123456781234567812345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(encrypt))
+	// Output: QM6mpzZJDT2mBu4k1NdGPA==
+}
+
 func TestBlowfishCFBEncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	key := []byte("123456781234567812345678")
@@ -126,6 +161,21 @@ func TestBlowfishCFBEncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleBlowfishCFBDecrypt() {
+	src, err := base64.StdEncoding.DecodeString("QM6mpzZJDT2mBu4k1NdGPA==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	decrypt, err := BlowfishCFBDecrypt(src, []byte("123456781234567812345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(decrypt))
+	// Output: TrumanWong
 }
 
 func TestBlowfishCFBDecrypt(t *testing.T) {
@@ -186,6 +236,16 @@ func TestBlowfishCFBISO10126(t *testing.T) {
 	}
 }
 
+func ExampleBlowfishCTREncrypt() {
+	encrypt, err := BlowfishCTREncrypt([]byte("TrumanWong"), []byte("123456781234567812345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(encrypt))
+	// Output: QM6mpzZJDT27xwEkDxgIGQ==
+}
+
 func TestBlowfishCTREncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	key := []byte("123456781234567812345678")
@@ -214,6 +274,21 @@ func TestBlowfishCTREncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleBlowfishCTRDecrypt() {
+	src, err := base64.StdEncoding.DecodeString("QM6mpzZJDT27xwEkDxgIGQ==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	decrypt, err := BlowfishCTRDecrypt(src, []byte("123456781234567812345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(decrypt))
+	// Output: TrumanWong
 }
 
 func TestBlowfishCTRDecrypt(t *testing.T) {
@@ -274,6 +349,16 @@ func TestBlowfishCTRISO10126(t *testing.T) {
 	}
 }
 
+func ExampleBlowfishECBEncrypt() {
+	encrypt, err := BlowfishECBEncrypt([]byte("TrumanWong"), []byte("1234567812345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(encrypt))
+	// Output: oCuapqeOZtmwqM4VwEXz2w==
+}
+
 func TestBlowfishECBEncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	key := []byte("123456781234567812345678")
@@ -300,6 +385,21 @@ func TestBlowfishECBEncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleBlowfishECBDecrypt() {
+	encrypt, err := base64.StdEncoding.DecodeString("oCuapqeOZtmwqM4VwEXz2w==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	decrypt, err := BlowfishECBDecrypt(encrypt, []byte("1234567812345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(decrypt))
+	// Output: TrumanWong
 }
 
 func TestBlowfishECBDecrypt(t *testing.T) {
@@ -356,6 +456,16 @@ func TestBlowfishECBISO10126(t *testing.T) {
 	}
 }
 
+func ExampleBlowfishOFBEncrypt() {
+	encrypt, err := BlowfishOFBEncrypt([]byte("TrumanWong"), []byte("123456781234567812345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(encrypt))
+	// Output: QM6mpzZJDT3SLilrXziq/Q==
+}
+
 func TestBlowfishOFBEncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	key := []byte("123456781234567812345678")
@@ -384,6 +494,21 @@ func TestBlowfishOFBEncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleBlowfishOFBDecrypt() {
+	encrypt, err := base64.StdEncoding.DecodeString("QM6mpzZJDT3SLilrXziq/Q==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	decrypt, err := BlowfishOFBDecrypt(encrypt, []byte("123456781234567812345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(decrypt))
+	// Output: TrumanWong
 }
 
 func TestBlowfishOFBDecrypt(t *testing.T) {

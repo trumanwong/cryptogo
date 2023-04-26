@@ -8,6 +8,16 @@ import (
 	"testing"
 )
 
+func ExampleDesCBCEncrypt() {
+	password, err := DesCBCEncrypt([]byte("TrumanWong"), []byte("12345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(password))
+	// Output: DQ3gRwc3eKO/ffcphCq45g==
+}
+
 func TestDesCBCEncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	key := []byte("12345678")
@@ -36,6 +46,17 @@ func TestDesCBCEncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleDesCBCDecrypt() {
+	src, err := base64.StdEncoding.DecodeString("DQ3gRwc3eKO/ffcphCq45g==")
+	password, err := DesCBCDecrypt(src, []byte("12345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(password))
+	// Output: TrumanWong
 }
 
 func TestDesCBCDecrypt(t *testing.T) {
@@ -96,6 +117,16 @@ func TestDesCBCISO10126(t *testing.T) {
 	}
 }
 
+func ExampleDesCFBEncrypt() {
+	password, err := DesCFBEncrypt([]byte("TrumanWong"), []byte("12345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(password))
+	// Output: wqJ35Rm72+aM4xRnW2SKzw==
+}
+
 func TestDesCFBEncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	key := []byte("12345678")
@@ -125,6 +156,17 @@ func TestDesCFBEncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleDesCFBDecrypt() {
+	src, err := base64.StdEncoding.DecodeString("wqJ35Rm72+aM4xRnW2SKzw==")
+	password, err := DesCFBDecrypt(src, []byte("12345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(password))
+	// Output: TrumanWong
 }
 
 func TestDesCFBDecrypt(t *testing.T) {
@@ -185,6 +227,16 @@ func TestDesCFBISO10126(t *testing.T) {
 	}
 }
 
+func ExampleDesCTREncrypt() {
+	password, err := DesCTREncrypt([]byte("TrumanWong"), []byte("12345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(password))
+	// Output: wqJ35Rm72+Yvde8W2Xn2CA==
+}
+
 func TestDesCTREncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	key := []byte("12345678")
@@ -213,6 +265,21 @@ func TestDesCTREncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleDesCTRDecrypt() {
+	password, err := base64.StdEncoding.DecodeString("wqJ35Rm72+Yvde8W2Xn2CA==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	clearText, err := DesCTRDecrypt(password, []byte("12345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(clearText))
+	// Output: TrumanWong
 }
 
 func TestDesCTRDecrypt(t *testing.T) {
@@ -273,6 +340,16 @@ func TestDesCTRISO10126(t *testing.T) {
 	}
 }
 
+func ExampleDesECBEncrypt() {
+	password, err := DesECBEncrypt([]byte("TrumanWong"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(password))
+	// Output: rayjMG0QXSYRXd2HJ0J4rg==
+}
+
 func TestDesECBEncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	key := []byte("12345678")
@@ -298,6 +375,21 @@ func TestDesECBEncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleDesECBDecrypt() {
+	password, err := base64.StdEncoding.DecodeString("rayjMG0QXSYRXd2HJ0J4rg==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	clearText, err := DesECBDecrypt(password, []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(clearText))
+	// Output: TrumanWong
 }
 
 func TestDesECBDecrypt(t *testing.T) {
@@ -354,6 +446,16 @@ func TestDesECBISO10126(t *testing.T) {
 	}
 }
 
+func ExampleDesOFBEncrypt() {
+	password, err := DesOFBEncrypt([]byte("TrumanWong"), []byte("12345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(password))
+	// Output: wqJ35Rm72+aHEpjfKW8Sqg==
+}
+
 func TestDesOFBEncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	key := []byte("12345678")
@@ -382,6 +484,21 @@ func TestDesOFBEncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleDesOFBDecrypt() {
+	password, err := base64.StdEncoding.DecodeString("wqJ35Rm72+aHEpjfKW8Sqg==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	clearText, err := DesOFBDecrypt(password, []byte("12345678"), []byte("12345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(clearText))
+	// Output: TrumanWong
 }
 
 func TestDesOFBDecrypt(t *testing.T) {

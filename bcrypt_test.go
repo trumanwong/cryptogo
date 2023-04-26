@@ -1,10 +1,22 @@
 package cryptogo
 
 import (
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"golang.org/x/crypto/bcrypt"
 	"testing"
 )
+
+func ExamplePasswordHash() {
+	password, err := PasswordHash([]byte("TrumanWong"), bcrypt.DefaultCost)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Println(PasswordVerify([]byte("TrumanWong"), password))
+	// Output: true
+}
 
 func TestPasswordHash(t *testing.T) {
 	t.Run("TestPasswordHash", func(t *testing.T) {

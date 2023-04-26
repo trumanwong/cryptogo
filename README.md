@@ -110,6 +110,10 @@ Blowfish Encryption/Decryption with secret key, iv and padding(`ZERO` / `ANSI X.
 - Blowfish-ecb
 - Blowfish-ofb
 
+## Documentation
+
+See [documentaion and examples](https://pkg.go.dev/github.com/trumanwong/cryptogo).
+
 ## Staying up to date
 
 To update crypto-go to the latest version, use `go get -u github.com/trumanwong/cryptogo`

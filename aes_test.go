@@ -8,6 +8,16 @@ import (
 	"testing"
 )
 
+func ExampleAesCBCEncrypt() {
+	encrypt, err := AesCBCEncrypt([]byte("TrumanWong"), []byte("1234567812345678"), []byte("1234567812345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(encrypt))
+	// Output: Acdkp3UqE2Gp7BDkzhQIuQ==
+}
+
 func TestAesCBCEncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	aes128Key := []byte("1234567812345678")
@@ -54,6 +64,21 @@ func TestAesCBCEncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleAesCBCDecrypt() {
+	src, err := base64.StdEncoding.DecodeString("Acdkp3UqE2Gp7BDkzhQIuQ==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	password, err := AesCBCDecrypt(src, []byte("1234567812345678"), []byte("1234567812345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(password))
+	// Output: TrumanWong
 }
 
 func TestAesCBCDecrypt(t *testing.T) {
@@ -138,6 +163,16 @@ func TestAesCBCISO10126(t *testing.T) {
 	}
 }
 
+func ExampleAesCFBEncrypt() {
+	encrypt, err := AesCFBEncrypt([]byte("TrumanWong"), []byte("1234567812345678"), []byte("1234567812345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(encrypt))
+	// Output: Od5pO4YprY9UqIxokeQo4A==
+}
+
 func TestAesCFBEncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	aes128Key := []byte("1234567812345678")
@@ -184,6 +219,21 @@ func TestAesCFBEncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleAesCFBDecrypt() {
+	src, err := base64.StdEncoding.DecodeString("Od5pO4YprY9UqIxokeQo4A==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	password, err := AesCFBDecrypt(src, []byte("1234567812345678"), []byte("1234567812345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(password))
+	// Output: TrumanWong
 }
 
 func TestAesCFBDecrypt(t *testing.T) {
@@ -268,6 +318,16 @@ func TestAesCFBISO10126(t *testing.T) {
 	}
 }
 
+func ExampleAesCTREncrypt() {
+	encrypt, err := AesCTREncrypt([]byte("TrumanWong"), []byte("1234567812345678"), []byte("1234567812345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(encrypt))
+	// Output: Od5pO4YprY9UqIxokeQo4A==
+}
+
 func TestAesCTREncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	aes128Key := []byte("1234567812345678")
@@ -314,6 +374,21 @@ func TestAesCTREncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleAesCTRDecrypt() {
+	src, err := base64.StdEncoding.DecodeString("Od5pO4YprY9UqIxokeQo4A==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	password, err := AesCTRDecrypt(src, []byte("1234567812345678"), []byte("1234567812345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(password))
+	// Output: TrumanWong
 }
 
 func TestAesCTRDecrypt(t *testing.T) {
@@ -398,6 +473,16 @@ func TestAesCTRISO10126(t *testing.T) {
 	}
 }
 
+func ExampleAesECBEncrypt() {
+	encrypt, err := AesECBEncrypt([]byte("TrumanWong"), []byte("1234567812345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(encrypt))
+	// Output: G4q6Xt8NyBS9Gi2rfgdleA==
+}
+
 func TestAesECBEncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	aes128Key := []byte("1234567812345678")
@@ -442,6 +527,21 @@ func TestAesECBEncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleAesECBDecrypt() {
+	src, err := base64.StdEncoding.DecodeString("G4q6Xt8NyBS9Gi2rfgdleA==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	password, err := AesECBDecrypt(src, []byte("1234567812345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(password))
+	// Output: TrumanWong
 }
 
 func TestAesECBDecrypt(t *testing.T) {
@@ -522,6 +622,16 @@ func TestAesECBISO10126(t *testing.T) {
 	}
 }
 
+func ExampleAesOFBEncrypt() {
+	encrypt, err := AesOFBEncrypt([]byte("TrumanWong"), []byte("1234567812345678"), []byte("1234567812345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(base64.StdEncoding.EncodeToString(encrypt))
+	// Output: Od5pO4YprY9UqIxokeQo4A==
+}
+
 func TestAesOFBEncrypt(t *testing.T) {
 	clearText := []byte("TrumanWong")
 	aes128Key := []byte("1234567812345678")
@@ -568,6 +678,21 @@ func TestAesOFBEncrypt(t *testing.T) {
 			assert.Equal(t, v.Expected, base64.StdEncoding.EncodeToString(password))
 		})
 	}
+}
+
+func ExampleAesOFBDecrypt() {
+	src, err := base64.StdEncoding.DecodeString("Od5pO4YprY9UqIxokeQo4A==")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	password, err := AesOFBDecrypt(src, []byte("1234567812345678"), []byte("1234567812345678"), paddings.Zero)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(password))
+	// Output: TrumanWong
 }
 
 func TestAesOFBDecrypt(t *testing.T) {
@@ -650,6 +775,23 @@ func TestAesOFBISO10126(t *testing.T) {
 			assert.Equal(t, clearText, ret)
 		})
 	}
+}
+
+func ExampleAesGCMEncrypt() {
+	clearText := []byte("TrumanWong")
+	key := []byte("1234567812345678")
+	password, nonce, err := AesGCMEncrypt(clearText, key)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	ret, err := AesGCMDecrypt(password, key, nonce)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(ret))
+	// Output: TrumanWong
 }
 
 func TestAesGCMEncrypt(t *testing.T) {
