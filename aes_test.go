@@ -1,15 +1,17 @@
 package cryptogo
 
 import (
+	"crypto/rand"
 	"encoding/base64"
 	"fmt"
 	"github.com/stretchr/testify/assert"
 	"github.com/trumanwong/cryptogo/paddings"
+	"io"
 	"testing"
 )
 
 func ExampleAesCBCEncrypt() {
-	encrypt, err := AesCBCEncrypt([]byte("TrumanWong"), []byte("1234567812345678"), []byte("1234567812345678"), paddings.Zero)
+	encrypt, err := AesCBCEncrypt([]byte("TrumanWong"), []byte("1234567812345678"), []byte("1234567812345678"), paddings.PKCS5)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -780,7 +782,13 @@ func TestAesOFBISO10126(t *testing.T) {
 func ExampleAesGCMEncrypt() {
 	clearText := []byte("TrumanWong")
 	key := []byte("1234567812345678")
-	password, nonce, err := AesGCMEncrypt(clearText, key)
+	nonce := make([]byte, 12)
+	if _, err := io.ReadFull(rand.Reader, nonce); err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	password, err := AesGCMEncrypt(clearText, key, nonce)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -813,7 +821,12 @@ func TestAesGCMEncrypt(t *testing.T) {
 
 	for _, v := range tests {
 		t.Run(fmt.Sprintf("AES-GCM"), func(t *testing.T) {
-			password, nonce, err := AesGCMEncrypt(v.ClearText, v.Key)
+			nonce := make([]byte, 12)
+			if _, err := io.ReadFull(rand.Reader, nonce); err != nil {
+				fmt.Println(err)
+				return
+			}
+			password, err := AesGCMEncrypt(v.ClearText, v.Key, nonce)
 			assert.NoError(t, err)
 
 			ret, err := AesGCMDecrypt(password, v.Key, nonce)

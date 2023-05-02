@@ -97,18 +97,18 @@ func AesOFBDecrypt(src, key, iv []byte, padding paddings.CipherPadding) ([]byte,
 }
 
 // AesGCMEncrypt Aes GCM encryption with key
-func AesGCMEncrypt(clearText, key []byte) ([]byte, []byte, error) {
-	block, err := aes.NewCipher(key)
-	if err != nil {
-		return nil, nil, err
-	}
-	return mode.GCMEncrypt(clearText, block)
-}
-
-func AesGCMDecrypt(src, key, nonce []byte) ([]byte, error) {
+func AesGCMEncrypt(clearText, key, iv []byte) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err
 	}
-	return mode.GCMDecrypt(src, nonce, block)
+	return mode.GCMEncrypt(clearText, iv, block)
+}
+
+func AesGCMDecrypt(src, key, iv []byte) ([]byte, error) {
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		return nil, err
+	}
+	return mode.GCMDecrypt(src, iv, block)
 }
