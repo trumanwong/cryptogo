@@ -1,4 +1,4 @@
-package cryptogo
+package rsa
 
 import (
 	"crypto"
@@ -17,8 +17,9 @@ const (
 	PKCS8 keyFormat = "pkcs8"
 )
 
-// RSAGenerateKeyPair Generate rsa key pair
-func RSAGenerateKeyPair(bits int, format keyFormat) (privateKey, publicKey []byte, err error) {
+// GenerateKeyPair Generate rsa key pair with bits and format(PKCS1 or PKCS8)
+// return private key and public key.
+func GenerateKeyPair(bits int, format keyFormat) (privateKey, publicKey []byte, err error) {
 	key, err := rsa.GenerateKey(rand.Reader, bits)
 	if err != nil {
 		return
@@ -58,7 +59,7 @@ func RSAGenerateKeyPair(bits int, format keyFormat) (privateKey, publicKey []byt
 	return
 }
 
-// parse public key
+// parse public key from pem. support PKCS1 and PKCS8. return rsa.PublicKey
 func parsePublicKey(publicKey []byte) (*rsa.PublicKey, error) {
 	block, _ := pem.Decode(publicKey)
 	if block == nil {
@@ -90,7 +91,7 @@ func parsePublicKey(publicKey []byte) (*rsa.PublicKey, error) {
 	return rsaPublicKey, nil
 }
 
-// parse private key
+// parse private key from pem. support PKCS1 and PKCS8. return rsa.PrivateKey
 func parsePrivateKey(privateKey []byte) (*rsa.PrivateKey, error) {
 	block, _ := pem.Decode(privateKey)
 	if block == nil {
@@ -121,8 +122,8 @@ func parsePrivateKey(privateKey []byte) (*rsa.PrivateKey, error) {
 	return rsaPrivateKey, nil
 }
 
-// RSAEncrypt RSA Encrypt
-func RSAEncrypt(src, publicKey []byte) (dst []byte, err error) {
+// Encrypt RSA Encrypt
+func Encrypt(src, publicKey []byte) (dst []byte, err error) {
 	rsaPublicKey, err := parsePublicKey(publicKey)
 	if err != nil {
 		return nil, err
@@ -130,7 +131,8 @@ func RSAEncrypt(src, publicKey []byte) (dst []byte, err error) {
 	return rsa.EncryptPKCS1v15(rand.Reader, rsaPublicKey, src)
 }
 
-func RSADecrypt(src, privateKey []byte) ([]byte, error) {
+// Decrypt RSA Decrypt
+func Decrypt(src, privateKey []byte) ([]byte, error) {
 	rsaPrivateKey, err := parsePrivateKey(privateKey)
 	if err != nil {
 		return nil, err
@@ -138,8 +140,8 @@ func RSADecrypt(src, privateKey []byte) ([]byte, error) {
 	return rsa.DecryptPKCS1v15(rand.Reader, rsaPrivateKey, src)
 }
 
-// RSASign rsa sign
-func RSASign(src []byte, privateKey []byte, hash crypto.Hash) ([]byte, error) {
+// Sign rsa sign
+func Sign(src []byte, privateKey []byte, hash crypto.Hash) ([]byte, error) {
 	block, _ := pem.Decode(privateKey)
 	if block == nil {
 		return nil, errors.New("key is invalid format")
@@ -158,8 +160,8 @@ func RSASign(src []byte, privateKey []byte, hash crypto.Hash) ([]byte, error) {
 	return rsa.SignPKCS1v15(rand.Reader, rsaPrivateKey, hash, h.Sum(nil))
 }
 
-// RSAVerify rsa verify
-func RSAVerify(src, sign, publicKey []byte, hash crypto.Hash) error {
+// Verify rsa verify
+func Verify(src, sign, publicKey []byte, hash crypto.Hash) error {
 	rsaPublicKey, err := parsePublicKey(publicKey)
 	if err != nil {
 		return err

@@ -110,6 +110,13 @@ Blowfish Encryption/Decryption with secret key, iv and padding(`ZERO` / `ANSI X.
 - Blowfish-ecb
 - Blowfish-ofb
 
+---
+
+Asymmetric encryption/decryption with public key and private key.
+
+- rsa
+- ecc
+
 ## Documentation
 
 See [documentaion and examples](https://pkg.go.dev/github.com/trumanwong/cryptogo).
