@@ -36,6 +36,7 @@ func main()  {
 - sha3-256
 - sha3-384
 - sha3-512
+- sm3
 
 ---
 
@@ -113,10 +114,6 @@ Blowfish Encryption/Decryption with secret key, iv and padding(`ZERO` / `ANSI X.
 - Blowfish-ctr
 - Blowfish-ecb
 - Blowfish-ofb
-
----
-
-- SM3 Hash
 
 ---
 
