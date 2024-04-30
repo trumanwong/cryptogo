@@ -1,6 +1,8 @@
 package cryptogo
 
-import "encoding/base64"
+import (
+	"encoding/base64"
+)
 
 // Base64Encode base64 encode
 func Base64Encode(src []byte) []byte {

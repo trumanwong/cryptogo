@@ -63,6 +63,7 @@ func main()  {
 ---
 
 - hex
+- base32
 - base64
 
 ---
