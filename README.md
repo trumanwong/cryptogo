@@ -66,6 +66,10 @@ func main()  {
 
 ---
 
+- morse code encryption/decryption.
+
+---
+
 AES Encryption/Decryption with secret key, iv and padding(`ZERO` / `ANSI X.923`/ `ISO/IEC 9797-1` / `ISO 10126` / `PKCS5` / `PKCS7`).
 - aes-cbc
 - aes-cfb
@@ -111,6 +115,18 @@ Blowfish Encryption/Decryption with secret key, iv and padding(`ZERO` / `ANSI X.
 - Blowfish-ofb
 
 ---
+
+- SM3 Hash
+
+---
+
+SM4 Encryption/Decryption with secret key, iv and padding(`ZERO` / `ANSI X.923`/ `ISO/IEC 9797-1` / `ISO 10126` / `PKCS5` / `PKCS7`).
+- SM4-cbc
+- SM4-cfb
+- SM4-ofb
+- SM4-ctr
+- SM4-ccm
+- SM4-gcm
 
 Asymmetric encryption/decryption with public key and private key.
 

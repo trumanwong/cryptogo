@@ -782,18 +782,23 @@ func TestAesOFBISO10126(t *testing.T) {
 func ExampleAesGCMEncrypt() {
 	clearText := []byte("TrumanWong")
 	key := []byte("1234567812345678")
-	nonce := make([]byte, 12)
-	if _, err := io.ReadFull(rand.Reader, nonce); err != nil {
-		fmt.Println(err)
-		return
-	}
+	nonce, _ := base64.StdEncoding.DecodeString("DopH/Gbb77Rb1aKo")
 
-	password, err := AesGCMEncrypt(clearText, key, nonce)
+	password, err := AesGCMEncrypt(clearText, key, nonce, paddings.PKCS7)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	ret, err := AesGCMDecrypt(password, key, nonce)
+	fmt.Println(base64.StdEncoding.EncodeToString(password))
+	// Output: 4bjjnHQiqaZJCUurnVk7s1pO7Y4+5rOX6p/s9ss/Jv0=
+}
+
+func ExampleAesGCMDecrypt() {
+	key := []byte("1234567812345678")
+	nonce, _ := base64.StdEncoding.DecodeString("DopH/Gbb77Rb1aKo")
+
+	password, _ := base64.StdEncoding.DecodeString("4bjjnHQiqaZJCUurnVk7s1pO7Y4+5rOX6p/s9ss/Jv0=")
+	ret, err := AesGCMDecrypt(password, key, nonce, paddings.PKCS7)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -826,10 +831,10 @@ func TestAesGCMEncrypt(t *testing.T) {
 				fmt.Println(err)
 				return
 			}
-			password, err := AesGCMEncrypt(v.ClearText, v.Key, nonce)
+			password, err := AesGCMEncrypt(v.ClearText, v.Key, nonce, paddings.PKCS7)
 			assert.NoError(t, err)
 
-			ret, err := AesGCMDecrypt(password, v.Key, nonce)
+			ret, err := AesGCMDecrypt(password, v.Key, nonce, paddings.PKCS7)
 			assert.NoError(t, err)
 			assert.Equal(t, string(clearText), string(ret))
 		})

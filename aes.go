@@ -88,27 +88,27 @@ func AesOFBEncrypt(clearText, key, iv []byte, padding paddings.CipherPadding) ([
 }
 
 // AesOFBDecrypt Aes OFB decryption with key, iv and padding
-func AesOFBDecrypt(src, key, iv []byte, padding paddings.CipherPadding) ([]byte, error) {
+func AesOFBDecrypt(src, key, nonce []byte, padding paddings.CipherPadding) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err
 	}
-	return mode.OFBDecrypt(src, iv, block, padding)
+	return mode.OFBDecrypt(src, nonce, block, padding)
 }
 
 // AesGCMEncrypt Aes GCM encryption with key
-func AesGCMEncrypt(clearText, key, iv []byte) ([]byte, error) {
+func AesGCMEncrypt(clearText, key, iv []byte, padding paddings.CipherPadding) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err
 	}
-	return mode.GCMEncrypt(clearText, iv, block)
+	return mode.GCMEncrypt(clearText, iv, block, padding)
 }
 
-func AesGCMDecrypt(src, key, iv []byte) ([]byte, error) {
+func AesGCMDecrypt(src, key, nonce []byte, padding paddings.CipherPadding) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err
 	}
-	return mode.GCMDecrypt(src, iv, block)
+	return mode.GCMDecrypt(src, nonce, block, padding)
 }

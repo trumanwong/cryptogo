@@ -7,8 +7,8 @@ import (
 
 // GCMEncrypt GCM encryption with block, iv and padding
 // return encrypt, nonce, error
-func GCMEncrypt(clearText, nonce []byte, block cipher.Block) ([]byte, error) {
-	clearText, err := paddings.PaddingClearText(clearText, paddings.No, block.BlockSize())
+func GCMEncrypt(clearText, nonce []byte, block cipher.Block, padding paddings.CipherPadding) ([]byte, error) {
+	clearText, err := paddings.PaddingClearText(clearText, padding, block.BlockSize())
 	if err != nil {
 		return nil, err
 	}
@@ -22,13 +22,15 @@ func GCMEncrypt(clearText, nonce []byte, block cipher.Block) ([]byte, error) {
 }
 
 // GCMDecrypt GCM decryption with block, nonce and padding
-func GCMDecrypt(src, nonce []byte, block cipher.Block) ([]byte, error) {
+func GCMDecrypt(src, nonce []byte, block cipher.Block, padding paddings.CipherPadding) ([]byte, error) {
 	aesgcm, err := cipher.NewGCM(block)
 	if err != nil {
 		return nil, err
 	}
 
 	decrypt, err := aesgcm.Open(nil, nonce, src, nil)
-
-	return decrypt, err
+	if err != nil {
+		return nil, err
+	}
+	return paddings.UnPadding(decrypt, padding), nil
 }
