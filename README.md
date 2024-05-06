@@ -62,6 +62,10 @@ func main()  {
 
 ---
 
+- jwt
+
+---
+
 - hex
 - base32
 - base64
