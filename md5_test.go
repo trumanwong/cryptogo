@@ -67,3 +67,9 @@ func ExampleHmacMD5() {
 func TestHmacMD5(t *testing.T) {
 	assert.Equal(t, "c8ec4ed8338e4d0a81e75ba3b9d290a8", HmacMD5([]byte(""), []byte("123")))
 }
+
+func TestFileMd5(t *testing.T) {
+	md5, err := FileMd5("LICENSE")
+	assert.Nil(t, err)
+	assert.Equal(t, "535e4dfbad33a8b4daa24a1c00258040", md5)
+}

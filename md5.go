@@ -5,6 +5,8 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
+	"io"
+	"os"
 	"strings"
 )
 
@@ -43,4 +45,17 @@ func HmacMD5(key, clearText []byte) string {
 	h := hmac.New(md5.New, key)
 	h.Write(clearText)
 	return hex.EncodeToString(h.Sum(nil))
+}
+
+func FileMd5(filePath string) (string, error) {
+	file, err := os.Open(filePath)
+	if err != nil {
+		return "", err
+	}
+	defer file.Close()
+	hash := md5.New()
+	if _, err := io.Copy(hash, file); err != nil {
+		return "", err
+	}
+	return hex.EncodeToString(hash.Sum(nil)), nil
 }
