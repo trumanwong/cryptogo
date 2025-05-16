@@ -69,6 +69,9 @@ func main()  {
 - hex
 - base32
 - base64
+- base100
+- UUencode/UUdecode
+- XXencode/XXdecode
 
 ---
 
@@ -130,6 +133,16 @@ SM4 Encryption/Decryption with secret key, iv and padding(`ZERO` / `ANSI X.923`/
 - SM4-ccm
 - SM4-gcm
 
+---
+
+Vigenere cipher encryption/decryption with secret key.
+
+---
+
+Caesar cipher encryption/decryption with shift.
+
+---
+
 Asymmetric encryption/decryption with public key and private key.
 
 - rsa
@@ -142,9 +155,6 @@ See [documentaion and examples](https://pkg.go.dev/github.com/trumanwong/cryptog
 ## Staying up to date
 
 To update crypto-go to the latest version, use `go get -u github.com/trumanwong/cryptogo`
-
-## Acknowledgements
-<a href="https://jb.gg/OpenSourceSupport"><img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg?_gl=1*1nuywz*_ga*NTcwMDkwNDIxLjE2ODQzMTI1Mzg.*_ga_9J976DJZ68*MTY4NDMxMjUzOC4xLjEuMTY4NDMxMjU1Mi4wLjAuMA.." width="60" height="60"><img src="https://resources.jetbrains.com/storage/products/company/brand/logos/GoLand.svg?_gl=1*1nuywz*_ga*NTcwMDkwNDIxLjE2ODQzMTI1Mzg.*_ga_9J976DJZ68*MTY4NDMxMjUzOC4xLjEuMTY4NDMxMjU1Mi4wLjAuMA.." width="60" height="60"><img src="https://resources.jetbrains.com/storage/products/company/brand/logos/GoLand_icon.svg?_gl=1*1b2zdbh*_ga*NTcwMDkwNDIxLjE2ODQzMTI1Mzg.*_ga_9J976DJZ68*MTY4NDMxMjUzOC4xLjEuMTY4NDMxMjU1Mi4wLjAuMA.." width="60" height="60"></a>
 
 ## License
 This project is licensed under the terms of the MIT license.

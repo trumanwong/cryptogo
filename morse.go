@@ -75,7 +75,7 @@ var morseLetter = map[string]string{
 
 func MorseEncode(input []byte, separator string) (dst string, err error) {
 	s := ""
-	if input != nil && len(input) > 0 {
+	if len(input) > 0 {
 		s = strings.ToLower(string(input))
 	}
 	if strings.Contains(s, " ") {
@@ -93,7 +93,7 @@ func MorseEncode(input []byte, separator string) (dst string, err error) {
 
 func MorseDecode(src []byte, separator string) (dst string, err error) {
 	s := ""
-	if src != nil && len(src) > 0 {
+	if len(src) > 0 {
 		s = string(src)
 	}
 	for _, part := range strings.Split(s, separator) {
